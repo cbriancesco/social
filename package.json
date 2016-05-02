@@ -1,0 +1,35 @@
+{
+  "name": "wolfaide",
+  "version": "1.0.0",
+  "description": "business tools",
+  "main": "app.js",
+  "scripts": {
+    "test": "wolf"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbriancesco/wolfaide.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "json",
+    "jade",
+    "gulp",
+    "stylus"
+  ],
+  "author": "Caleb Briancesco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbriancesco/wolfaide/issues"
+  },
+  "homepage": "https://github.com/cbriancesco/wolfaide#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.14",
+    "pug": "^0.1.0"
+  }
+}

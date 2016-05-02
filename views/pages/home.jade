@@ -9,7 +9,10 @@ block append head
 
 block content
     h1 this is home
-    p #{data}
+    if user
+        p #{user}
+    if data
+        p #{data}
 
 
 

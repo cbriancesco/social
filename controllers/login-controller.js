@@ -1,24 +1,39 @@
 var mongoose = require('mongoose');
 var User = require('../models/users');
 var cleanString = require('../helpers/cleanString');
+var validateEmail = require('../helpers/validate/email');
 
 
 module.exports.signup = function(req, res){
-    var newUser = req.body;
-    newUser.email = newUser.email.toLowercase();
+    console.log(req.body);
 
-    var user = new User(newUser);
+    if(validateEmail(req.body.email)){
+        console.log('email is valid');
+        res.render('home', {user: req.body.email});
+    } else {
+        return invalid();
+    }
+    
+    //console.log(req);
 
-    // save user to database
-    user.save(function(err, info) {
-        if (err){ 
-            throw err;
-        } else {
-            res.json({_id: info._id, email: info.email, user: info.user});
-        }
-    });
+    // var newUser = req.body;
+    // newUser.email = newUser.email.toLowercase();
 
+    // var user = new User(newUser);
+
+    // // save user to database
+    // user.save(function(err, info) {
+    //     if (err){ 
+    //         throw err;
+    //     } else {
+    //         res.json({_id: info._id, email: info.email, user: info.user});
+    //     }
+    // });
+    function invalid() {
+        return res.render('signup', { invalid: true });
+    }
 }
+
 
 
 

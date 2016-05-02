@@ -4,10 +4,12 @@ var express = require('express'),
     app = express(),
     middleware = require('./middleware'),
     routes = require('./routes');
+    port = 4001;
+
 
 mongoose.connect('mongodb://localhost:27017/wolfaide');
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views/pages');
@@ -21,6 +23,6 @@ app.use('/files', express.static(__dirname + "/files"));
 // set of routes
 routes(app, mongoose);
 
-app.listen('4000', function(){
-    console.log('listening for localhost:4000');
+app.listen(port, function(){
+    console.log('listening for localhost:' + port);
 });

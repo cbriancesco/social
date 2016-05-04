@@ -7,7 +7,7 @@ var express = require('express'),
     port = 4001;
 
 
-mongoose.connect('mongodb://localhost:27017/wolfaide');
+mongoose.connect('mongodb://localhost:27017/wolfaide3');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

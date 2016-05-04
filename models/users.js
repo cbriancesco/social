@@ -4,17 +4,14 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-    userName: { type: String, required: true, index: { unique: true } },
+    //userName: { type: String, index: { unique: true } },
     name: {first: String, last: String},
-    lastName: String,
     password: String,
-    email: { type: String, required: true, lowercase: true, index: { unique: true } },
+    email: { type: String, required: true, lowercase: true, index: { unique: true }},
     gender: String,
-    creationDate: Date,
     lastLogin: Date,
     birth: Date,
     image: String,
-    role: String,
     verified: Boolean,
     signup: { type: Date, default: Date.now }
 });

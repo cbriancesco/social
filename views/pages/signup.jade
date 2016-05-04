@@ -19,12 +19,23 @@ block content
 
         ul
             li
+                label(for='first') First Name
+                input#pass(name='first', type='text')
+            li
+                label(for='last') Last Name
+                input#pass(name='last', type='text')
+            li
                 label(for='email') Email
                 input#email(name='email')
             li
                 label(for='pass') Password
                 input#pass(name='pass', type='password')
+            li
                 input(type='submit', value='Sign Up')
+
+    if user
+        p Name: #{user.name.first} #{user.name.last}
+        p Email: #{user.email}
 
 
 block append footer-scripts

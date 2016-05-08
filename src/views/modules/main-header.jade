@@ -1,0 +1,16 @@
+//- -------------- MAIN HEADER ---------------- -//
+//- ------------------------------------------- -//
+
+ul
+    li
+        a(href='/') Home
+    if user
+        li
+            a(href='/dashboard') Dashboard
+        li
+            a(href='/logout') Log Out
+    else
+        li
+            a(href='/login') Login
+        li
+            a(href='/signup') Sign Up

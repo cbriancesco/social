@@ -1,0 +1,21 @@
+//- -------------- Home Page ---------------- -//
+//- ----------------------------------------- -//
+
+extends ../templates/layout
+
+
+block append head
+    link(href='public/css/home.css', rel='stylesheet', type='text/css')
+
+block content
+    h1 this is home
+    if user
+        p #{user}
+    if data
+        p #{data}
+
+    img(src='file/572f5cfdd8b368ce2b7c692d/300/200')
+
+
+
+block append footer-scripts

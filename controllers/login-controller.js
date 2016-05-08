@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var User = require('../models/users');
 var cleanString = require('../helpers/cleanString');
 var validateEmail = require('../helpers/validate/email');
-
+var sess;
 
 module.exports.signup = function(req, res, next){
     console.log(req.body);
@@ -75,25 +75,15 @@ module.exports.login = function (req, res){
                 if (err) throw err;
 
                 if(isMatch){
-                    console.log('PASSWORD MATCH');
-                    // res.json({email: user.email,
-                    //         id: user._id,
-                    //         user: user.user,
-                    //         name: user.name,
-                    //         lastName: user.lastName,
-                    //         fullName: user.name + ' ' + user.lastName,
-                    //         image: user.image,
-                    //         imageName: user.imageName,
-                    //         verified: user.verified,
-                    //         role: user.role});
+                    sess = req.session;
+                    sess.email = email;
 
-                    //req.session.isLoggedIn = true;
-                    //req.session.user = user.email;
-                    //res.redirect('/dashboard');
+                    res.redirect('dashboard');
 
                 } else {
                     console.log('PSSWORD DIDNT MATCH');
-                    console.log(pass, isMatch); // -&gt; Password123: false
+                    console.log(pass, isMatch);
+                    return invalid();
                 }
                 
             });
@@ -101,12 +91,22 @@ module.exports.login = function (req, res){
             console.log('user not found');
         }
     });
+
+    function invalid() {
+        return res.render('login', { invalid: true });
+    }
 }
 
 
-
-
-
+module.exports.logout = function (req, res){
+    req.session.destroy(function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+}
 
 
 

@@ -1,0 +1,14 @@
+{
+    "pages": [{
+            "pageName": "Home Page",
+            "fileName": "homepage.js",
+            "modules": ["./src/js/modules/prodi.ui.slider.js", "./src/js/modules/prodi.ui.quizes.js", "./src/js/modules/prodi.ui.video-player.js"]
+        },
+        {
+            "pageName": "Internal Page",
+            "fileName": "internal.js",
+            "modules": []
+        }
+    ],
+    "defaults": ["./src/js/modules/prodi.ui.generic.js"]
+}

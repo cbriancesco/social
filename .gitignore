@@ -18,6 +18,7 @@ Icon?
 *.sock
 
 # Generated Files
+/public
 /files/uploads/**/*
 /files/downloads/**/*
 /app/**/*

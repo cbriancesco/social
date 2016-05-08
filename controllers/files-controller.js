@@ -3,8 +3,6 @@ var Schema = mongoose.Schema;
 var conn = mongoose.connection;
 var fs = require('fs');
 var Grid = require('gridfs-stream');
-var im = require('imagemagick');
-var gm = require('gm');
 
 
 Grid.mongo = mongoose.mongo;

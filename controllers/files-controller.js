@@ -4,6 +4,7 @@ var conn = mongoose.connection;
 var fs = require('fs');
 var Grid = require('gridfs-stream');
 var im = require('imagemagick');
+var gm = require('gm');
 
 
 Grid.mongo = mongoose.mongo;
@@ -58,14 +59,6 @@ module.exports.getFile = function(req, res){
             var mime = files[0].contentType;
             res.set('Content-Type', mime);
             var read_stream = gfs.createReadStream({_id: pic_id});
-            //.resize(req.params.width, req.params.height);
-            //.noProfile()
-            //.quality(constants.ASSETS.IMAGES_DEFAULT_QUALITY)
-            //.interlace(constants.INTERLACE)
-            // .stream(function (err, stdout, stderr) {
-            //     //stdout.pipe(res);
-            //     read_stream.pipe(res);
-            // });
             
             read_stream.pipe(res);
             

@@ -8,9 +8,12 @@ block append head
     link(href='public/css/home.css', rel='stylesheet', type='text/css')
 
 block content
-    h1 this is home
-    if user
-        p Hello #{user.name.first}!
+    h1 Upps!
+
+    if error
+        p #{error}
+    else 
+        p You have no access just yet. :)
 
 
 

@@ -13,8 +13,6 @@ module.exports.signup = function(req, res, next){
     } else {
         return invalid();
     }
-    
-    //console.log(req);
 
     var newUser = req.body;
     newUser.email = newUser.email.toLowerCase();
@@ -28,24 +26,9 @@ module.exports.signup = function(req, res, next){
         if (err){ 
             throw err;
         } else {
-            //res.json({_id: info._id, email: info.email, user: info.user});
             res.render('signup', { user: info });
-         }
+        }
     });
-
-
-    // User.create(newUser, function (err, newUser) {
-    //     if (err) {
-    //         if (err instanceof mongoose.Error.ValidationError) {
-    //             return invalid();
-    //         } 
-    //         return next(err);
-    //     }
-
-    //     // user created successfully
-    //     res.render('signup', { user: info });
-    // })
-
 
     function invalid() {
         return res.render('signup', { invalid: true });
@@ -56,8 +39,6 @@ module.exports.signup = function(req, res, next){
 
 
 module.exports.login = function (req, res){
-
-    //var email = cleanString(req.param('email'));
     var email = req.body.email;
     var pass = req.body.pass;
 
@@ -76,13 +57,18 @@ module.exports.login = function (req, res){
 
                 if(isMatch){
                     sess = req.session;
-                    sess.email = email;
+                    sess.email = user.email;
+                    sess.name = user.name;
+                    sess.userid = user._id;
+                    sess.image = user.image;
 
-                    res.redirect('dashboard');
+                    // redirect to dashboard
+                    res.writeHead(301, {
+                        Location: '/dashboard'
+                    });
+                    res.end();
 
                 } else {
-                    console.log('PSSWORD DIDNT MATCH');
-                    console.log(pass, isMatch);
                     return invalid();
                 }
                 

@@ -14,6 +14,7 @@ module.exports = function (app) {
     // home page
     app.get('/', homeController.showHome);
     app.get('/dashboard', homeController.showDashboard);
+    app.get('/dashboard/:id', homeController.showDashboardUser);
 
 
     // login / logout routes
@@ -26,10 +27,16 @@ module.exports = function (app) {
     app.post('/signup', loginController.signup);
     app.get('/logout', loginController.logout);
 
+
     // files
     app.post('/upload', multipartMiddleware, filesController.uploadFile);
+    app.post('/upload/:id', multipartMiddleware, filesController.uploadFile2);
     app.get('/file/:id/:width/:height', filesController.getFile);
 
+
+    // Message
+    app.get('/message', function(req, res, next){res.render('message');});
+
     // error handlers
-    //errors(app);
+    errors(app);
 }

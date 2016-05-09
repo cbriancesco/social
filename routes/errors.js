@@ -6,7 +6,8 @@ module.exports = function (app) {
     res.status(404);
 
     if (req.accepts('html')) {
-      return res.send("<h2>I'm sorry, I couldn't find that page.</h2>");
+
+      return res.status(200).send("<h2>I'm sorry, I couldn't find that page.</h2>");
     }
 
     if (req.accepts('json')) {
@@ -15,12 +16,13 @@ module.exports = function (app) {
 
     // default response type
     res.type('txt');
+    res.status(200);
     res.send("Hmmm, couldn't find that page.");
   })
 
    // 500
   app.use(function (err, req, res, next) {
     console.error('error at %s\n', req.url, err.stack);
-    res.send(500, "Oops, we made a boo boo.");
+    res.status(500).send("Oops, we made a boo boo.");
   })
 }

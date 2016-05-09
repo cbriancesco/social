@@ -2,7 +2,6 @@ var express = require('express'),
     session = require('express-session'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    multer = require('multer'),
     app = express(),
     routes = require('./routes'),
     port = 4001;

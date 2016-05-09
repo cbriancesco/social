@@ -6,6 +6,8 @@ var errors = require('./errors');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var sess;
+var express = require('express');
+
 
 module.exports = function (app) {
 
@@ -25,7 +27,7 @@ module.exports = function (app) {
     app.get('/logout', loginController.logout);
 
     // files
-    app.get('/upload', filesController.uploadFile);
+    app.post('/upload', multipartMiddleware, filesController.uploadFile);
     app.get('/file/:id/:width/:height', filesController.getFile);
 
     // error handlers

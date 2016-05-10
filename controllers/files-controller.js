@@ -13,8 +13,6 @@ module.exports.uploadFile = function(req, res){
     var filePath = req.files.image.path;
     var fileName = req.files.image.name;
     var newFile;
-    // console.log('THIS IS THE FILES DATA');
-    // console.log(req.files);
  
     var writestream = gfs.createWriteStream({
         filename: fileName
@@ -23,9 +21,6 @@ module.exports.uploadFile = function(req, res){
     fs.createReadStream(filePath).pipe(writestream);
  
     writestream.on('close', function (file) {
-        // console.log('CREATED FILE');
-        // console.log(file);
-        // console.log(file.filename + ' Written To DB');
         res.render('dashboard', {image: file._id});
     });
     
@@ -39,8 +34,6 @@ module.exports.uploadFile2 = function(req, res){
     var filePath = req.files.image.path;
     var fileName = req.files.image.name;
     var newFile;
-    // console.log('THIS IS THE FILES DATA');
-    // console.log(req.files);
  
     var writestream = gfs.createWriteStream({
         filename: fileName
@@ -51,15 +44,29 @@ module.exports.uploadFile2 = function(req, res){
     writestream.on('close', function (file) {
         
         if(req.params && req.params.id && req.params.id === sess.userid){
-            console.log(sess.userid);
-            updateUserImage(sess.userid, file._id);
+            if (sess.image){
+                removePrevImage(sess.image, updateUserImage, sess.userid, file._id)
+            } else {
+                updateUserImage(sess.userid, file._id);
+            }
+            
         } else {
-            console.log('didnt match basic');
-            console.log(file);
             res.render('dashboard', {error: "woooops! that didn't work.."});
         }
         
     });
+
+    function removePrevImage(iid, cb, uid, niid){
+        var gfs = Grid(conn.db);
+
+        gfs.remove({_id : iid}, function (err) {
+            if (err) {
+                return handleError(err);
+            } else {
+                cb(uid, niid);
+            }
+        });
+    }
 
     function updateUserImage(uid, iid){
 
@@ -73,12 +80,10 @@ module.exports.uploadFile2 = function(req, res){
             } else {
                 sess.image = iid;
                 
-                //res.redirect('/dashboard', {user: sess});
-                // redirect to dashboard
-                    res.writeHead(301, {
-                        Location: '/dashboard'
-                    });
-                    res.end();
+                res.writeHead(301, {
+                    Location: '/dashboard'
+                });
+                res.end();
             }
         });
     }
@@ -89,9 +94,6 @@ module.exports.uploadFile2 = function(req, res){
 
 module.exports.getFile = function(req, res){
     var gfs = Grid(conn.db);
-    
-    console.log('files');
-    console.log(req.params);
 
     var imageid = req.params.id.toString();
     var pic_id = mongoose.Types.ObjectId(imageid);
@@ -101,8 +103,6 @@ module.exports.getFile = function(req, res){
         if (err) {
             res.json(err);
         }
-
-        console.log(files);
 
         if (files.length > 0) {
             var mime = files[0].contentType;

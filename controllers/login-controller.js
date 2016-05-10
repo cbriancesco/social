@@ -42,14 +42,11 @@ module.exports.login = function (req, res){
     var email = req.body.email;
     var pass = req.body.pass;
 
-    console.log(req.body);
-
     // fetch user and test password verification
     User.findOne({ email: email }, function(err, user) {
          if (err) throw err;
 
          if(user){
-            console.log('user found');
 
             // test a matching password
             user.comparePassword(pass, function(err, isMatch) {

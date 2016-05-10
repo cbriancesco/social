@@ -9,8 +9,11 @@ var express = require('express'),
 mongoose.connect('mongodb://localhost:27017/wolfaide3');
 
 app.use(session({secret: 'building Wolfaide', 
-                 saveUninitialized: true,
-                 resave: true}));
+    saveUninitialized: true,
+    resave: true,
+    cookie:{maxAge: Date.now() + (1 * 86400 * 1000)}
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/uploads', express.static(__dirname + '/uploads'));

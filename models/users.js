@@ -13,7 +13,14 @@ var UserSchema = new Schema({
     birth: Date,
     image: String,
     verified: Boolean,
-    signup: { type: Date, default: Date.now }
+    signup: { type: Date, default: Date.now },
+    company: String,
+    employee: Boolean,
+    id: String,
+    empId: String,
+    phone: String,
+    salary: String,
+    related: Array
 });
 
 UserSchema.pre('save', function(next) {

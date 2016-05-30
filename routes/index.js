@@ -37,6 +37,7 @@ module.exports = function (app) {
     // Message
     app.get('/message', function(req, res, next){res.render('message');});
 
+
     // error handlers
     errors(app);
 }

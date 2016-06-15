@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var homeController = require('../controllers/home-controller');
 var loginController = require('../controllers/login-controller');
 var filesController = require('../controllers/files-controller');
+var paypalController = require('../controllers/paypal-controller');
 var errors = require('./errors');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
@@ -27,11 +28,15 @@ module.exports = function (app) {
     app.post('/signup', loginController.signup);
     app.get('/logout', loginController.logout);
 
+    // cart
+    app.get('/cart', paypalController.showCart);
 
     // files
     app.post('/upload', multipartMiddleware, filesController.uploadFile);
     app.post('/upload/:id', multipartMiddleware, filesController.uploadFile2);
-    app.get('/file/:id/:width/:height', filesController.getFile);
+    app.get('/file/:id/:width/:height/:name', filesController.getFile);
+    app.get('/download/zip2', filesController.downloadZip2);
+    app.get('/download/zip', filesController.downloadZip);
 
 
     // Message

@@ -58,6 +58,7 @@ module.exports.login = function (req, res){
                     sess.name = user.name;
                     sess.userid = user._id;
                     sess.image = user.image;
+                    console.log(user.image);
 
                     // redirect to dashboard
                     res.writeHead(301, {

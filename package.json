@@ -1,5 +1,5 @@
 {
-  "name": "wolfaide",
+  "name": "animator",
   "version": "1.0.0",
   "description": "business tools",
   "main": "app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cbriancesco/wolfaide.git"
+    "url": "https://pstdevteam@bitbucket.org/pstdevteam/animator.git"
   },
   "keywords": [
     "mongodb",
@@ -21,13 +21,14 @@
   "author": "Caleb Briancesco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cbriancesco/wolfaide/issues"
+    "url": "https://pstdevteam@bitbucket.org/pstdevteam/animator.git/issues"
   },
-  "homepage": "https://github.com/cbriancesco/wolfaide#readme",
+  "homepage": "https://pstdevteam@bitbucket.org/pstdevteam/animator.git#readme",
   "dependencies": {
     "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
     "connect-multiparty": "^2.0.0",
+    "easy-zip": "0.0.4",
     "email-validator": "^1.0.4",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
@@ -41,7 +42,9 @@
     "gulp-uglify": "^1.5.3",
     "jade": "^1.11.0",
     "mongoose": "^4.4.14",
-    "pug": "^0.1.0",
+    "paypal-rest-sdk": "^1.6.8",
+    "pug": "^2.0.0-alpha7",
+    "request": "^2.72.0",
     "require-dir": "^0.3.0"
   }
 }

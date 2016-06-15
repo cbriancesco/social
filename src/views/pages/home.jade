@@ -10,8 +10,33 @@ block append head
 block content
     h1 this is home
     if user
-        p Hello #{user.name.first}!
+        p Hello #{user.name.first}
+
+    p.test
+    a(href='/download/zip') Download Zip
 
 
 
 block append footer-scripts
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=", crossorigin="anonymous")
+    script.
+        $(function(){
+            $('#test').on('click', function(){
+                var text = $('.text').val();
+
+                $.ajax({
+                    type: 'GET',
+                    data: {name: text},
+                    url: '/download/zip2',
+                    dataType: 'JSON',
+                    success: function (response){
+                        console.log(response);
+                        $('.test').html(response.name);
+                    },
+                    error: function (errorThrown){
+                        console.log('error');
+                        console.log(errorThrown);
+                    }
+                });
+            }); 
+        });

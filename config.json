@@ -1,4 +1,11 @@
 {
+    "port" : 5000,
+    "api" : {
+        "host" : "api.sandbox.paypal.com",
+        "port" : "",            
+        "client_id" : "YOUR TEST CLIENT ID",
+        "client_secret" : "YOUR TEST CLIENT SECRET"
+    },
     "version": "0.0.1",
     "paths": {
         "dev": {

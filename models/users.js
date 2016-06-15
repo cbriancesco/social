@@ -11,7 +11,7 @@ var UserSchema = new Schema({
     gender: String,
     lastLogin: Date,
     birth: Date,
-    image: String,
+    image: {_id: String, name: String},
     verified: Boolean,
     signup: { type: Date, default: Date.now },
     company: String,

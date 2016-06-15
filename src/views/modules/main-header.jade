@@ -1,17 +1,19 @@
 //- -------------- MAIN HEADER ---------------- -//
 //- ------------------------------------------- -//
 
-ul
-    li
-        a(href='/') Home
+ul.main__nav__list
+    li.main__nav__item
+        a.main__nav__link(href='/') Home
     if user
-        li
+        li.main__nav__item
             //-a(href='/dashboard/#{user.userid}') Dashboard
-            a(href='/dashboard') Dashboard
-        li
-            a(href='/logout') Log Out
+            a.main__nav__link(href='/dashboard') Dashboard
+        li.main__nav__item
+            a.main__nav__link(href='/logout') Log Out
     else
-        li
-            a(href='/login') Login
-        li
-            a(href='/signup') Sign Up
+        li.main__nav__item
+            a.main__nav__link(href='/login') Login
+        li.main__nav__item
+            a.main__nav__link(href='/signup') Sign Up
+    li.main__nav__item
+        a.main__nav__link(href='/cart') Cart
